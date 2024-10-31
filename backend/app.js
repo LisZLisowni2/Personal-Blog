@@ -37,6 +37,17 @@ app.post('/login', async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ 'message': 'Username or password not present' })
         }
+        const user = User.findOne({ username: username })
+        if (!user) {
+            return res.status(404).json({ 'message': 'User not found' })
+        }
+        const passTest = await bcrypt.compare(password, user.password)
+        if (!passTest) {
+            return res.status(401).json({ 'message': 'Wrong password' })
+        }
+
+        const token = jwt.sign({ username: username }, process.env.JWT_SECRET, { expiresIn: '1h' })
+        res.json({'message': 'Login successful', token})
     } catch (err) {
         res.status(500).json({ 'message': 'Server error' })
     }
