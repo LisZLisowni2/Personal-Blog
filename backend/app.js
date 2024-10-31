@@ -34,7 +34,7 @@ app.post('/register', async (req, res) => {
             return res.status(400).json({ 'message': 'Username, email or password not present' })
         }
         const hashedPass = await bcrypt.hash(password, 10)
-        const newUser = new User({username: username, email: email, password: hashedPass})
+        const newUser = new User({username: username, email: email, password: hashedPass, scope: 'user'})
         await newUser.save()
         res.status(201).json({ 'message': 'Success' })
     } catch (err) {
