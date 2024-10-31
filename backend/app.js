@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken')
 const User = require('./models/user')
 const Post = require('./models/post')
 const app = express()
+// SECURITY WARNING! Turn off on production
+const DEBUG = true
 const PORT = process.env.PORT || 3000
 const db_uri = process.env.DATABASE_URI
 
@@ -27,6 +29,11 @@ function authenticateToken(req, res, next) {
     })
 }
 
+function displayError(res, err) {
+    if (!DEBUG) res.status(500).json({ 'message': 'Server error' })
+    else res.status(500).json({ 'message': 'Server error', 'error': err })
+}
+
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body
@@ -38,7 +45,7 @@ app.post('/register', async (req, res) => {
         await newUser.save()
         res.status(201).json({ 'message': 'Success' })
     } catch (err) {
-        res.status(500).json({ 'message': 'Server error' })
+        displayError(res, err)
     }
 })
 
@@ -60,7 +67,7 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign({ username: username }, process.env.JWT_SECRET, { expiresIn: '1h' })
         res.json({'message': 'Login successful', token})
     } catch (err) {
-        res.status(500).json({ 'message': 'Server error' })
+        displayError(res, err)
     }
 })
 
@@ -70,7 +77,7 @@ app.get('/user', authenticateToken, async (req, res) => {
         const userData = await User.findOne({username: username})
         res.json(userData)
     } catch (err) {
-        res.status(500).json({ 'message': 'Server error' })
+        displayError(res, err)
     }
 })
 
