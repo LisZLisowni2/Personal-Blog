@@ -31,6 +31,17 @@ app.post('/register', async (req, res) => {
     }
 })
 
+app.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body
+        if (!username || !password) {
+            return res.status(400).json({ 'message': 'Username or password not present' })
+        }
+    } catch (err) {
+        res.status(500).json({ 'message': 'Server error' })
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server running at http://127.0.0.1:${PORT}`)
 })
