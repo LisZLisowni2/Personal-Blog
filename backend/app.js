@@ -4,8 +4,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const user = require('models/user')
-const post = require('models/post')
+const User = require('./models/user')
+const Post = require('./models/post')
 const app = express()
 const PORT = process.env.PORT || 3000
 const db_uri = process.env.DATABASE_URI
@@ -22,6 +22,8 @@ app.post('/register', async (req, res) => {
         if (!username || !email || !password) {
             return res.status(400).json({ 'message': 'Username, email or password not present' })
         }
+        const hashedPass = await bcrypt.hash(password, 10)
+        const newUser = new User({username: username, email: email, password: hashedPass})
     } catch (err) {
 
     }
