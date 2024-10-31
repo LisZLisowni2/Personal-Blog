@@ -22,7 +22,7 @@ function authenticateToken(req, res, next) {
     
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) return res.status(403).json({ 'message': 'Invalid token' })
-        const res = user
+        req.user = user
         next()
     })
 }
@@ -62,6 +62,10 @@ app.post('/login', async (req, res) => {
     } catch (err) {
         res.status(500).json({ 'message': 'Server error' })
     }
+})
+
+app.get('/user', authenticateToken, (req, res) => {
+    
 })
 
 app.listen(PORT, () => {
