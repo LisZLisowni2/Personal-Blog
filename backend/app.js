@@ -64,8 +64,14 @@ app.post('/login', async (req, res) => {
     }
 })
 
-app.get('/user', authenticateToken, (req, res) => {
-    
+app.get('/user', authenticateToken, async (req, res) => {
+    try {
+        const username = req.user
+        const userData = await User.findOne({username: username})
+        res.json(userData)
+    } catch (err) {
+        res.status(500).json({ 'message': 'Server error' })
+    }
 })
 
 app.listen(PORT, () => {
