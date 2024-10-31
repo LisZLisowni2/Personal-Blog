@@ -16,6 +16,17 @@ mongoose.connect(db_uri)
 .then(() => console.log("Connection established!"))
 .catch(err => console.error(err))
 
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization'] && req.headers['authorization'].split(' ')[1]
+    if (!token) return res.status(401).json({ 'message': 'Token missing, access denied' })
+    
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ 'message': 'Invalid token' })
+        const res = user
+        next()
+    })
+}
+
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body
