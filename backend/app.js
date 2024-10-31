@@ -31,7 +31,7 @@ function authenticateToken(req, res, next) {
 
 function displayError(res, err) {
     if (!DEBUG) res.status(500).json({ 'message': 'Server error' })
-    else res.status(500).json({ 'message': 'Server error', 'error': err })
+    else res.status(500).json({ 'message': 'Server error', 'error': err.message })
 }
 
 app.post('/register', async (req, res) => {
@@ -55,7 +55,7 @@ app.post('/login', async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ 'message': 'Username or password not present' })
         }
-        const user = User.findOne({ username: username })
+        const user = await User.findOne({ username: username }).select('password')
         if (!user) {
             return res.status(404).json({ 'message': 'User not found' })
         }
@@ -73,8 +73,8 @@ app.post('/login', async (req, res) => {
 
 app.get('/user', authenticateToken, async (req, res) => {
     try {
-        const username = req.user
-        const userData = await User.findOne({username: username})
+        const username = req.user.username
+        const userData = await User.findOne({username: username}).select('-_id -__v -password')
         res.json(userData)
     } catch (err) {
         displayError(res, err)
