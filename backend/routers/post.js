@@ -52,11 +52,8 @@ module.exports = (config) => {
         }
     })
     // Add post
-    router.post('/add', authenticateToken, async (req, res) => {
+    router.post('/add', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
         try {
-            const username = req.user.username
-            const userScope = await User.find({ username: username }).select('scope')
-            if (userScope.scope !== "admin") 
             const { title, description, published } = req.body
             if (!title || !description) return res.status(400).json({ 'message': 'Title or description not present' })
             const newPost = new Post({title: title, description: description, published: published})
@@ -66,7 +63,16 @@ module.exports = (config) => {
         }
     })
     // Edit post
-
+    router.put('/edit/:id', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
+        try {
+            const id = req.params.id
+            const post = await Post.findByIdAndUpdate(id, req.body, { new: true })
+            if (!post) return res.status(404).json({ 'message': 'Post not found' })
+            res.json(post)
+        } catch (err) {
+            displayError(res, err)
+        }
+    })
     // Delete post
 
     return router
