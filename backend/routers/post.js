@@ -1,4 +1,5 @@
 const express = require('express')
+const Post = require('../models/post')
 const router = express.Router()
 
 module.exports = (config) => {
@@ -9,7 +10,14 @@ module.exports = (config) => {
     }
 
     // List of posts
-
+    router.get('/', async (req, res) => {
+        try {
+            const posts = Post.find()
+            res.status(200).json(posts)
+        } catch (err) {
+            displayError(res, err)
+        }
+    })
     // One post
 
     // Add post
