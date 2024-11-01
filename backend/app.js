@@ -4,6 +4,7 @@ require('dotenv').config()
 // Import packages and models
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 // Create express app
 const app = express()
 // Settings
@@ -16,9 +17,20 @@ const userRouter = require('./routers/user')(config)
 const postRouter = require('./routers/post')(config)
 const PORT = process.env.PORT || 3000
 const db_uri = process.env.DATABASE_URI
+const allowedOrigins = ["http://localhost:5173", "https://localhost:5173", "http://127.0.0.1:5173", "https://127.0.0.1:5173", "http://127.0.0.1:3000"]
 
 // Middleware to parse json body
 app.use(express.json())
+app.use(cors({
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true)
+        } else {
+            callback(new Error("Blocked by CORS"))
+        }
+    },
+    credentials: true
+}))
 app.use('/users', userRouter)
 app.use('/posts', postRouter)
 
