@@ -4,16 +4,15 @@ require('dotenv').config()
 // Import packages and models
 const express = require('express')
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const User = require('./models/user')
-const Post = require('./models/post')
-const userRouter = require('./routers/user')
 // Create express app
 const app = express()
 // Settings
 // SECURITY WARNING! Turn off on production
 const DEBUG = true
+const config = {
+    debug: DEBUG
+}
+const userRouter = require('./routers/user')(config)
 const PORT = process.env.PORT || 3000
 const db_uri = process.env.DATABASE_URI
 
