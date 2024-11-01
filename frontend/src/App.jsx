@@ -10,10 +10,16 @@ function App() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3000/posts/", {
-      withCredentials: true
-    }).then(res => setPosts(res))
-    .catch(err => console.error(err))
+    const fetchPosts = async () => { 
+      axios.get("http://127.0.0.1:3000/posts/", {
+        withCredentials: true
+      }).then(res => { 
+        setPosts(res.data)
+      })
+      .catch(err => console.error(err))
+    }
+    fetchPosts()
+    console.log(posts)
   }, [])
 
   return (
