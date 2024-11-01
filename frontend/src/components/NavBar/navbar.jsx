@@ -2,7 +2,7 @@ import React from "react";
 
 function NavBar() {
     return (
-        <div className="h-1/4 bg-rose-600 p-8 grid grid-cols-3 text-white">
+        <div className="h-24 bg-rose-600 p-8 grid grid-cols-3 text-white">
             <div className="col-span-2">
                 <span className="text-4xl content-center hover:text-neutral-300 active:text-stone-400">LisZLisowni blog</span>
             </div>
