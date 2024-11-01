@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
-      <Content />
+      <Content posts={posts}/>
       <Footer className="content-end"/>
     </div>
   )
