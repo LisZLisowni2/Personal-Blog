@@ -1,6 +1,7 @@
 const express = require('express')
 const Post = require('../models/post')
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 module.exports = (config) => {
@@ -24,7 +25,7 @@ module.exports = (config) => {
 
     // Authorize a user scope
     const authorizedAccess = (required_role) => {
-        return async (res, req, next) => {
+        return async (req, res, next) => {
             const username = req.user.username
             const user = await User.find({username: username}).select('scope')
             if (user.scope !== required_role) return res.status(401).json({ 'message': 'Access denied' })
