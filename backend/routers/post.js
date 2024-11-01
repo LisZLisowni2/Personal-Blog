@@ -36,7 +36,7 @@ module.exports = (config) => {
     // List of posts
     router.get('/', async (req, res) => {
         try {
-            const posts = await Post.find()
+            const posts = await Post.find().populate('createdBy', 'username')
             res.status(200).json(posts)
         } catch (err) {
             displayError(res, err)
@@ -45,7 +45,7 @@ module.exports = (config) => {
     // One post
     router.get('/:id', async (req, res) => {
         try {
-            const post = await Post.findById(req.params.id)
+            const post = await Post.findById(req.params.id).populate('createdBy', 'username')
             if (!post) return res.status(404).json({ 'message': 'Post with that id do not exist' })
             res.status(200).json(post)
         } catch (err) {
@@ -56,8 +56,9 @@ module.exports = (config) => {
     router.post('/add', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
         try {
             const { title, description, published } = req.body
+            const user = await User.findOne({username: req.user.username})
             if (!title || !description) return res.status(400).json({ 'message': 'Title or description not present' })
-            const newPost = new Post({title: title, description: description, published: published})
+            const newPost = new Post({title: title, description: description, published: published, createdBy: user._id})
             await newPost.save()
         } catch (err) {
             displayError(res, err)
