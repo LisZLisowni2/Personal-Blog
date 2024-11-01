@@ -4,7 +4,7 @@ function NavBar() {
     return (
         <div className="h-24 bg-rose-600 p-8 grid grid-cols-3 text-white">
             <div className="col-span-2">
-                <span className="text-4xl content-center hover:text-neutral-300 active:text-stone-400">LisZLisowni blog</span>
+                <span className="sm:text-4xl text-2xl content-center hover:text-neutral-300 active:text-stone-400">LisZLisowni blog</span>
             </div>
             <div className="col-span-1">
                 <div className="flex flex-row-reverse items-center content-center ">
