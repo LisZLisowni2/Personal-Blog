@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "./Post/post";
+import PostCard from "./Post/postCard";
 
 function Content() {
     const posts = [
@@ -18,7 +18,7 @@ function Content() {
         <div className="grid grid-cols-6 flex-1">
             <div></div>
                 <div className="col-span-4 p-4">
-                    { posts.map(post => <Post title={post.title} description={post.description} date={post.date} />)}
+                    { posts.map(post => <PostCard title={post.title} description={post.description} date={post.date} />)}
                 </div>
             <div></div>
         </div>

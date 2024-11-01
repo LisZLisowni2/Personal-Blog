@@ -1,6 +1,6 @@
 import React from "react";
 
-const Post = request => {
+const PostCard = request => {
     return (
         <div className="border-2 border-black p-4 mb-4 last:mb-0 max-h-52 overflow-hidden">
             <span className="text-2xl">{ request.title }</span><br />
@@ -11,4 +11,4 @@ const Post = request => {
     )
 }
 
-export default Post
+export default PostCard
