@@ -53,7 +53,7 @@ module.exports = (config) => {
         }
     })
     // Add post
-    router.post('/add', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
+    router.post('/add', authenticateToken, authorizedAccess('admin'), async (req, res) => {
         try {
             const { title, description, published } = req.body
             const user = await User.findOne({username: req.user.username})
@@ -65,7 +65,7 @@ module.exports = (config) => {
         }
     })
     // Edit post
-    router.put('/edit/:id', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
+    router.put('/edit/:id', authenticateToken, authorizedAccess('admin'), async (req, res) => {
         try {
             const id = req.params.id
             const post = await Post.findByIdAndUpdate(id, req.body, { new: true })
@@ -76,7 +76,7 @@ module.exports = (config) => {
         }
     })
     // Delete post
-    router.delete('/delete/:id', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
+    router.delete('/delete/:id', authenticateToken, authorizedAccess('admin'), async (req, res) => {
         try {
             const id = req.params.id
             const post = await Post.findByIdAndDelete(id)
