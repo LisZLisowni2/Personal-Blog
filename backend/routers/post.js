@@ -27,7 +27,7 @@ module.exports = (config) => {
     const authorizedAccess = (required_role) => {
         return async (req, res, next) => {
             const username = req.user.username
-            const user = await User.find({username: username}).select('scope')
+            const user = await User.findOne({username: username}).select('scope')
             if (user.scope !== required_role) return res.status(401).json({ 'message': 'Access denied' })
             return next()
         }
@@ -60,6 +60,7 @@ module.exports = (config) => {
             if (!title || !description) return res.status(400).json({ 'message': 'Title or description not present' })
             const newPost = new Post({title: title, description: description, published: published, createdBy: user._id})
             await newPost.save()
+            res.status(201).json(newPost)
         } catch (err) {
             displayError(res, err)
         }
