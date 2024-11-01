@@ -18,13 +18,13 @@ const db_uri = process.env.DATABASE_URI
 
 // Middleware to parse json body
 app.use(express.json())
+app.use('/users', userRouter)
 
 // Handle a connection about MongoDB and error
 mongoose.connect(db_uri)
 .then(() => console.log("Connection established!"))
 .catch(err => console.error(err))
 
-app.use('/users', userRouter)
 
 app.listen(PORT, () => {
     console.log(`Server running at http://127.0.0.1:${PORT}`)
