@@ -13,12 +13,14 @@ const config = {
     debug: DEBUG
 }
 const userRouter = require('./routers/user')(config)
+const postRouter = require('./routers/post')(config)
 const PORT = process.env.PORT || 3000
 const db_uri = process.env.DATABASE_URI
 
 // Middleware to parse json body
 app.use(express.json())
 app.use('/users', userRouter)
+app.use('/posts', postRouter)
 
 // Handle a connection about MongoDB and error
 mongoose.connect(db_uri)
