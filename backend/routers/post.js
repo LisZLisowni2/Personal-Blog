@@ -74,6 +74,16 @@ module.exports = (config) => {
         }
     })
     // Delete post
+    router.delete('/delete/:id', authenticateToken, authorizedAccess('Admin'), async (req, res) => {
+        try {
+            const id = req.params.id
+            const post = await Post.findByIdAndDelete(id)
+            if (!post) return res.status(404).json({ 'message': 'Post not found' })
+            res.status(200).json({ 'message': 'Deleted successfully'})
+        } catch (err) {
+            displayError(res, err)
+        }
+    })
 
     return router
 }
