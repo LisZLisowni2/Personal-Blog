@@ -22,6 +22,16 @@ module.exports = (config) => {
         else res.status(500).json({ 'message': 'Server error', 'error': err.message })
     }
 
+    // Authorize a user scope
+    const authorizedAccess = (required_role) => {
+        return async (res, req, next) => {
+            const username = req.user.username
+            const user = await User.find({username: username}).select('scope')
+            if (user.scope !== required_role) return res.status(401).json({ 'message': 'Access denied' })
+            return next()
+        }
+    }
+
     // List of posts
     router.get('/', async (req, res) => {
         try {
@@ -46,7 +56,7 @@ module.exports = (config) => {
         try {
             const username = req.user.username
             const userScope = await User.find({ username: username }).select('scope')
-            if (userScope.scope !== "admin") return res.status(401).json({ 'message': 'Access denied' })
+            if (userScope.scope !== "admin") 
             const { title, description, published } = req.body
             if (!title || !description) return res.status(400).json({ 'message': 'Title or description not present' })
             const newPost = new Post({title: title, description: description, published: published})
