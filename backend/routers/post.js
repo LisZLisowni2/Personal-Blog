@@ -19,7 +19,15 @@ module.exports = (config) => {
         }
     })
     // One post
-
+    router.get('/:id', async (req, res) => {
+        try {
+            const post = Post.findById(req.params.id)
+            if (!post) return res.status(404).json({ 'message': 'Post with that id do not exist' })
+            res.status(200).json(post)
+        } catch (err) {
+            displayError(res, err)
+        }
+    })
     // Add post
 
     // Edit post
