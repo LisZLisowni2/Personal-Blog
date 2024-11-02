@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Content from "../Content/Content";
+import axios from "axios"
 import { Link } from "react-router-dom"
 
 function RegisterForm() {
@@ -8,14 +9,15 @@ function RegisterForm() {
     const [password, setPassword] = useState("")
     const [passwordVerify, setPasswordVerify] = useState("")
 
-    const handleRegister = async () => {
+    const handleRegister = async (event) => {
+        event.preventDefault()
         if (password == passwordVerify) {
-            obj = {
+            const obj = {
                 username: username,
                 email: email,
                 password: password
             }
-            await axios.post("http:/127.0.0.1:3000/users/register", obj, {
+            await axios.post("http://127.0.0.1:3000/users/register", obj, {
                 withCredentials: true
             }).then(res => console.log(res.data))
             .catch(err => console.error(err))
@@ -35,7 +37,7 @@ function RegisterForm() {
                 <label className="block font-bold text-xl" for="password">
                     Email
                 </label>
-                <input id="password" type="password" placeholder="Password" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => { setEmail(e.target.value )}}/>
+                <input id="password" type="text" placeholder="Email" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => { setEmail(e.target.value )}}/>
                 <label className="block font-bold text-xl" for="password">
                     Password
                 </label>
