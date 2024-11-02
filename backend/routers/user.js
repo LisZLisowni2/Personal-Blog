@@ -8,7 +8,7 @@ const router = express.Router()
 module.exports = (config) => {
     // Authentication token
     function authenticateToken(req, res, next) {
-        const token = req.headers['authorization'] && req.headers['authorization'].split(' ')[1]
+        const token = req.cookie.token
         if (!token) return res.status(401).json({ 'message': 'Token missing, access denied' })
         
         jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
@@ -57,6 +57,12 @@ module.exports = (config) => {
             }
 
             const token = jwt.sign({ username: username }, process.env.JWT_SECRET, { expiresIn: '1h' })
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: false,
+                sameSite: 'Strict',
+                maxAge: 3600000 // 1 hour
+            })
             res.json({'message': 'Login successful', token})
         } catch (err) {
             displayError(res, err)

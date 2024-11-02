@@ -5,6 +5,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const cookieParse = require('cookie-parser')
 // Create express app
 const app = express()
 // Settings
@@ -21,6 +22,7 @@ const allowedOrigins = ["http://localhost:5173", "https://localhost:5173", "http
 
 // Middleware to parse json body
 app.use(express.json())
+app.use(cookieParser())
 app.use(cors({
     origin: (origin, callback) => {
         if (allowedOrigins.includes(origin) || !origin) {
