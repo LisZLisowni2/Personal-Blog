@@ -2,15 +2,21 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom"
 
 export default function Post(request) {
+    const posts = request.posts
     const { id } = useParams()
-    const navigate = useNavigate()
-    const post = request.posts.find(item => item._id === id)
-
+    const post = posts.find(item => item._id === id)
+    console.log(posts)
+    console.log(post)
     return (
-        <div>
-            <span>{ post.title }</span>
-            <span>{ post.date }</span>
-            <span>{ post.description }</span>
+        <div className="grid grid-cols-6 flex-1">
+            <div></div>
+            <div className="col-span-4 p-4">
+                <span className="text-4xl">{ post.title }</span><br />
+                <span className="my-2">{ post.date }</span>
+                <hr />
+                <span>{ post.description }</span>
+            </div>
+            <div></div>
         </div>
     )
 }
