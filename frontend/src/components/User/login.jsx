@@ -5,10 +5,8 @@ function LoginForm() {
     const [password, setPassword] = useState("")
 
     return (
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <Content>
+            
+        </Content>
     )
 }
