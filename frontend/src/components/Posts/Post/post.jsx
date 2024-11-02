@@ -9,7 +9,7 @@ export default function Post(request) {
         return (
             <div className="grid grid-cols-6 flex-1">
                 <div></div>
-                <div className="col-span-4">Loading posts...</div>
+                <div className="col-span-4">Loading post...</div>
                 <div></div>
             </div>
         )
@@ -23,13 +23,14 @@ export default function Post(request) {
             </div>
         )
     }
+
     return (
         <div className="grid grid-cols-6 flex-1">
             <div></div>
             <div className="col-span-4 p-4">
                 <span className="text-4xl">{ post.title }</span><br />
-                <span className="my-2">{ post.date }</span>
-                <hr />
+                <span>{ post.date }</span>
+                <hr className="border-black my-2"/>
                 <span>{ post.description }</span>
             </div>
             <div></div>
