@@ -8,9 +8,25 @@ function RegisterForm() {
     const [password, setPassword] = useState("")
     const [passwordVerify, setPasswordVerify] = useState("")
 
+    const handleRegister = async () => {
+        if (password == passwordVerify) {
+            obj = {
+                username: username,
+                email: email,
+                password: password
+            }
+            await axios.post("http:/127.0.0.1:3000/users/register", obj, {
+                withCredentials: true
+            }).then(res => console.log(res.data))
+            .catch(err => console.error(err))
+        } else {
+            alert("Passwords are not the same")
+        }
+    }
+
     return (
         <Content>
-            <form method="POST" className="flex flex-col border-black border rounded w-1/2 text-center justify-center p-4 m-auto *:mb-4">
+            <form method="POST" onSubmit={handleRegister} className="flex flex-col border-black border rounded w-1/2 text-center justify-center p-4 m-auto *:mb-4">
                 <span className="text-3xl">Register form</span>
                 <label className="block font-bold text-xl" for="username">
                     Username
