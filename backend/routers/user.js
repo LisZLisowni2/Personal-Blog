@@ -79,5 +79,14 @@ module.exports = (config) => {
             displayError(res, err)
         }
     })
+
+    router.get('/logout', authenticateToken, async (req, res) => {
+        try {
+            res.clearCookie('token', {httpOnly: true, sameSite: "None", secure: true })
+            res.status(200).json({'message': 'Logout successful'})
+        } catch (err) {
+            displayError(res, err)
+        }
+    })
     return router
 }
