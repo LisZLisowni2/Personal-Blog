@@ -24,7 +24,7 @@ function AddPostForm() {
             withCredentials: true
         }).then(res => {
             fetchPosts()
-            navigate(`/${res.data.id}`)
+            navigate(`/${res.data._id}`)
         }).catch(err => console.error(err))
     }
 
