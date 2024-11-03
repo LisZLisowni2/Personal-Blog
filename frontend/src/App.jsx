@@ -9,6 +9,7 @@ import UserDetails from './components/User/details'
 import EditPostForm from './components/Posts/Post/postEdit'
 import AddPostForm from './components/Posts/Post/postAdd'
 import DeletePost from './components/Posts/Post/postDelete'
+import AdminPanel from './components/Posts/postsListAdmin'
 import { PostProvide } from './context/PostContext'
 import { UserProvide } from './context/UserContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -22,6 +23,7 @@ function App() {
           <NavBar />
             <Routes>
               <Route path='/' element={<PostList/>} />
+              <Route path='/admin' element={<AdminPanel />} />
               <Route path='/:id' element={<Post/>} />
               <Route path='/login' element={<LoginForm />} />
               <Route path='/register' element={<RegisterForm />}/>

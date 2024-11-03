@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import PostCard from "./Post/postCard";
 import Content from "../Content/Content";
+import PostCardAdmin from "./Post/postCardAdmin";
 import { usePosts } from "../../context/PostContext";
 import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
-function PostList(request) {
+function AdminPanel(request) {
     const { posts, loading: postsLoading, fetchPosts } = usePosts()
     const { user, loading: userLoading } = useUser()
+    const navigate = useNavigate()
     if (postsLoading && userLoading) {
         return (
             <Content>
@@ -26,14 +29,20 @@ function PostList(request) {
             </Content>
         )
     }
+
+    if (!user || user.scope !== "admin") {
+        navigate("/")
+    }
     
-    const filteredPosts = posts.filter(post => new Date(post.date) <= Date.now())
+    const filteredPosts = posts
 
     return (
         <Content>
-            { filteredPosts.map(post => <PostCard user={user} title={post.title} description={post.description} date={post.date} id={post._id} key={post._id}/>) }
+            { filteredPosts.map(post => <PostCardAdmin user={user} title={post.title} description={post.description} date={post.date} id={post._id} key={post._id}/>) }
         </Content>
     )
 }
 
-export default PostList
+
+
+export default AdminPanel
