@@ -14,11 +14,6 @@ const postSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    'published': {
-        type: Boolean,
-        required: true,
-        default: false
-    },
     'createdBy': {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
