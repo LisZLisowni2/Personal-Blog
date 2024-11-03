@@ -6,6 +6,7 @@ import Footer from './components/Footer/footer'
 import LoginForm from './components/User/login'
 import RegisterForm from './components/User/register'
 import UserDetails from './components/User/details'
+import EditPostForm from './components/Posts/Post/postEdit'
 import { PostProvide } from './context/PostContext'
 import { UserProvide } from './context/UserContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -23,7 +24,7 @@ function App() {
               <Route path='/login' element={<LoginForm />} />
               <Route path='/register' element={<RegisterForm />}/>
               <Route path='/user' element={<UserDetails />}/>
-              <Route path='/edit/:id' element={<Post />} />
+              <Route path='/edit/:id' element={<EditPostForm />} />
               <Route path='/delete/:id' element={<Post />} />
             </Routes>
           <Footer className="content-end"/>
