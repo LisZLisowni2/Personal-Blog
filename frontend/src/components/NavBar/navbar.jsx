@@ -8,7 +8,7 @@ function NavBar() {
     return (
         <div className="h-24 bg-rose-600 p-8 grid grid-cols-3 text-white">
             <div className="col-span-2">
-                <Link to="/"><span className="sm:text-4xl text-2xl content-center hover:text-neutral-300 active:text-stone-400">LisZLisowni blog</span></Link>
+                <Link to="/"><span className="sm:text-4xl text-2xl content-center hover:text-neutral-300 active:text-stone-400">Personal blog</span></Link>
             </div>
             <div className="col-span-1">
                 <div className="flex flex-row-reverse items-center content-center ">
