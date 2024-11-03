@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Content from "../Content/Content";
 import axios from "axios"
+import { useUser } from "../../context/UserContext";
 import { Link, useNavigate } from "react-router-dom"
 
 function LoginForm() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
+    const { handleUserLogin, handleUserLogout } = useUser()
 
     const loginHandler = async (event) => {
         event.preventDefault()
@@ -16,7 +18,10 @@ function LoginForm() {
         }
         await axios.post("http://127.0.0.1:3000/users/login", obj, {
             withCredentials: true
-        }).then(res => navigate("/"))   
+        }).then(res => {
+            handleUserLogin()
+            navigate("/")
+        })   
         .catch(err => console.error(err))
     }
 

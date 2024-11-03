@@ -6,10 +6,12 @@ import Footer from './components/Footer/footer'
 import LoginForm from './components/User/login'
 import RegisterForm from './components/User/register'
 import { PostProvide } from './context/PostContext'
+import { UserProvide } from './context/UserContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
+    <UserProvide>
     <PostProvide>
       <Router>
         <div className="flex flex-col h-screen">
@@ -24,6 +26,7 @@ function App() {
         </div>
       </Router>
     </PostProvide>
+    </UserProvide>
   )
 }
 
