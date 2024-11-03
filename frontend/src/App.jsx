@@ -23,6 +23,8 @@ function App() {
               <Route path='/login' element={<LoginForm />} />
               <Route path='/register' element={<RegisterForm />}/>
               <Route path='/user' element={<UserDetails />}/>
+              <Route path='/edit/:id' element={<Post />} />
+              <Route path='/delete/:id' element={<Post />} />
             </Routes>
           <Footer className="content-end"/>
         </div>
