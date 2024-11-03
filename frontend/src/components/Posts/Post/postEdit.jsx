@@ -31,7 +31,8 @@ function EditPostForm() {
     const [description, setDescription] = useState(post.description)
     const navigate = useNavigate()
 
-    const handleEditPost = async () => {
+    const handleEditPost = async (event) => {
+        event.preventDefault()
         obj = {
             title: title,
             description: description
