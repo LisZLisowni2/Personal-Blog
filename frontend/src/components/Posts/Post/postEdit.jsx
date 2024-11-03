@@ -33,7 +33,7 @@ function EditPostForm() {
 
     const handleEditPost = async (event) => {
         event.preventDefault()
-        obj = {
+        const obj = {
             title: title,
             description: description
         }

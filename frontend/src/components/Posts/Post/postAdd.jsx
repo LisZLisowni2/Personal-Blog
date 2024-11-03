@@ -14,11 +14,11 @@ function AddPostForm() {
             alert("Title or description not present")
             return
         }
-        obj = {
+        const obj = {
             title: title,
             description: description
         }
-        await axios.put(`http://127.0.0.1:3000/posts/add/`, obj, {
+        await axios.post(`http://127.0.0.1:3000/posts/add/`, obj, {
             withCredentials: true
         }).then(res => {
             navigate(`/${res.data.id}`)
@@ -32,11 +32,11 @@ function AddPostForm() {
                 <label className="block font-bold text-xl" for="username">
                     Title
                 </label>
-                <input id="username" type="text" placeholder="Title" value={title} className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setTitle(e.target.value)}/>
+                <input id="username" type="text" placeholder="Title" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setTitle(e.target.value)}/>
                 <label className="block font-bold text-xl" for="username">
                     Description
                 </label>
-                <textarea id="username" placeholder="Description" value={description} className="border-sky-400 border-2 p-2 w-3/4 m-auto" onChange={(e) => setDescription(e.target.value)}/>
+                <textarea id="username" placeholder="Description" className="border-sky-400 border-2 p-2 w-3/4 m-auto" onChange={(e) => setDescription(e.target.value)}/>
                 <button className="bg-blue-500 hover:bg-blue-700 active:bg-blue-900 p-4 w-1/4 m-auto rounded text-white">Add</button>
             </form>
         </Content>

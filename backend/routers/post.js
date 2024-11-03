@@ -7,7 +7,7 @@ const router = express.Router()
 module.exports = (config) => {
     // Authentication token
     function authenticateToken(req, res, next) {
-        const token = req.cookie.token
+        const token = req.cookies.token
         if (!token) return res.status(401).json({ 'message': 'Token missing, access denied' })
         
         jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
