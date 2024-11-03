@@ -8,16 +8,18 @@ function AddPostForm() {
     const { fetchPosts } = usePosts()
     const [title, setTitle] = useState(null)
     const [description, setDescription] = useState(null)
+    const [date, setDate] = useState(null)
     const navigate = useNavigate()
 
     const handleAddPost = async (event) => {
         event.preventDefault()
-        if (!title || !description) {
-            alert("Title or description not present")
+        if (!title || !date || !description) {
+            alert("Title, date or description not present")
             return
         }
         const obj = {
             title: title,
+            date: date,
             description: description
         }
         await axios.post(`http://127.0.0.1:3000/posts/add/`, obj, {
@@ -25,7 +27,7 @@ function AddPostForm() {
         }).then(res => {
             fetchPosts()
             navigate(`/${res.data._id}`)
-        }).catch(err => console.error(err))
+        }).catch(err => alert(err.response.statusText))
     }
 
     return (
@@ -36,6 +38,10 @@ function AddPostForm() {
                     Title
                 </label>
                 <input id="title" type="text" placeholder="Title" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setTitle(e.target.value)}/>
+                <label className="block font-bold text-xl" for="public">
+                    Date of publication
+                </label>
+                <input id="public" type="datetime-local" placeholder="Date of publication" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setDate(e.target.value)}/>
                 <label className="block font-bold text-xl" for="description">
                     Description
                 </label>
