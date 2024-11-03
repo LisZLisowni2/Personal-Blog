@@ -20,6 +20,15 @@ JWT_SECRET=<your_jwt_secret (you can generate on this website: https://jwtsecret
 4.2. Create user using API endpoint /users/register with request body { username: "your_username", email: "your_email", password: "your_password" }\
 4.3. In the mongodb site, enter the data collections of the cluster (Browse Collections)\
 4.4. Change scope of your user from "user" to "admin"\
+5. After running two server open your browser and navigate to https://localhost:5173
+
+## Features
+- **Add post** -> Adds a new post with title, description and content
+- **Read post** -> View published posts on the home page
+- **Edit post** -> Update the existing post from admin dashboard
+- **Delete post** -> Delete the existing post from admin dashboard
+- **Admin dashboard** -> Secured place for manage posts
+- **JWT Authentication** -> JWT has used to authenticate users 
 
 ## API endpoints
 
