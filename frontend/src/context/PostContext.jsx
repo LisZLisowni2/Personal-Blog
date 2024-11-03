@@ -7,24 +7,24 @@ export function PostProvide({ children }) {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchPosts = async () => { 
-            try {
-                const res = await axios.get("http://127.0.0.1:3000/posts/", {
-                    withCredentials: true
-                })
-                setPosts(res.data)
-            } catch (err) {
-                console.error(err)
-            } finally {
-                setLoading(false)
-            }
+    const fetchPosts = async () => { 
+        try {
+            const res = await axios.get("http://127.0.0.1:3000/posts/", {
+                withCredentials: true
+            })
+            setPosts(res.data)
+        } catch (err) {
+            console.error(err)
+        } finally {
+            setLoading(false)
         }
+    }
+    useEffect(() => {
         fetchPosts()
     }, [])
 
     return (
-        <PostContext.Provider value={{posts, loading}}>
+        <PostContext.Provider value={{posts, loading, fetchPosts}}>
             { children }
         </PostContext.Provider>
     )

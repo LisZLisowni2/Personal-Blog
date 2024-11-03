@@ -2,8 +2,10 @@ import { useState } from "react";
 import Content from "../../Content/Content";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { usePosts } from "../../../context/PostContext";
 
 function AddPostForm() {
+    const { fetchPosts } = usePosts()
     const [title, setTitle] = useState(null)
     const [description, setDescription] = useState(null)
     const navigate = useNavigate()
@@ -21,6 +23,7 @@ function AddPostForm() {
         await axios.post(`http://127.0.0.1:3000/posts/add/`, obj, {
             withCredentials: true
         }).then(res => {
+            fetchPosts()
             navigate(`/${res.data.id}`)
         }).catch(err => console.error(err))
     }

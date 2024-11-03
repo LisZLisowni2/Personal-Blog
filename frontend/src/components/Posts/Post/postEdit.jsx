@@ -5,7 +5,7 @@ import { usePosts } from "../../../context/PostContext";
 import { useParams, useNavigate } from "react-router-dom"
 
 function EditPostForm() {
-    const { posts, loading } = usePosts()
+    const { posts, loading, fetchPosts } = usePosts()
     const { id } = useParams()
 
     if (loading) {
@@ -40,6 +40,7 @@ function EditPostForm() {
         await axios.put(`http://127.0.0.1:3000/posts/edit/${id}`, obj, {
             withCredentials: true
         }).then(() => {
+            fetchPosts()
             navigate(`/${id}`)
         }).catch(err => console.error(err))
     }
