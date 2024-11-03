@@ -87,17 +87,6 @@ module.exports = (config) => {
             displayError(res, err)
         }
     })
-    // Publish post
-    router.patch('/publish/:id', authenticateToken, authorizedAccess('admin'), async (req, res) => {
-        try {
-            const id = req.params.id
-            const post = await Post.findByIdAndUpdate(id, { published: true }, { new: true })
-            if (!post) return res.status(404).json({ 'message': 'Post not found' })
-            res.status(200).json({ 'message': 'Published'})
-        } catch (err) {
-            displayError(res, err)
-        }
-    })
 
     return router
 }
