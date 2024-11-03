@@ -8,7 +8,7 @@ It allows user (admin) to create, edit and delete post and anyone can read those
 2. You can run the app using ```npm run dev```
 ### b) Backend (folder /backend)
 1. Run ```npm install```
-2. Create a cluster at mongodb website
+2. Create a cluster on mongodb website
 3. Create .env file and insert that variables:
 ```bash
 PORT=<your_port (3000)>
