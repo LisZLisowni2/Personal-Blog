@@ -59,8 +59,8 @@ module.exports = (config) => {
             const token = jwt.sign({ username: username }, process.env.JWT_SECRET, { expiresIn: '1h' })
             res.cookie('token', token, {
                 httpOnly: true,
-                secure: false,
-                sameSite: 'Strict',
+                secure: true,
+                sameSite: 'None',
                 maxAge: 3600000 // 1 hour
             })
             res.json({'message': 'Login successful', token})
