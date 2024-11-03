@@ -16,7 +16,7 @@ function LoginForm() {
         }
         await axios.post("http://127.0.0.1:3000/users/login", obj, {
             withCredentials: true
-        }).then(() => navigate("/"))
+        }).then(res => navigate("/"))   
         .catch(err => console.error(err))
     }
 

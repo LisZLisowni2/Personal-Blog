@@ -24,13 +24,7 @@ const allowedOrigins = ["http://localhost:5173", "https://localhost:5173", "http
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true)
-        } else {
-            callback(new Error("Blocked by CORS"))
-        }
-    },
+    origin: allowedOrigins,
     credentials: true
 }))
 app.use('/users', userRouter)
