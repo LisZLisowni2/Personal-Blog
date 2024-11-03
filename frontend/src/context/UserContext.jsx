@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import axios from 'axios'
 
 const UserContext = createContext()
@@ -19,6 +19,10 @@ export function UserProvide({ children }) {
         })
         setUser({})
     }
+
+    useEffect(() => {
+        handleUserLogin()
+    }, [])
 
     return (
         <UserContext.Provider value={{user, handleUserLogin, handleUserLogout}}>
