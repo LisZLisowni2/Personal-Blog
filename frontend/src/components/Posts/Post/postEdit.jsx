@@ -33,6 +33,10 @@ function EditPostForm() {
 
     const handleEditPost = async (event) => {
         event.preventDefault()
+        if (!title || !description) {
+            alert("Title or description not present")
+            return
+        }
         const obj = {
             title: title,
             description: description

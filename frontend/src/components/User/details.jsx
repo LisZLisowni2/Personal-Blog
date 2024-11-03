@@ -30,10 +30,12 @@ function UserDetails() {
 
     return (
         <Content>
-            <span>Username: { user.username }</span>
-            <span>Email: { user.email }</span>
-            <span>Role: { user.scope }</span>
-            <button onClick={handleLogout}>Logout</button>
+            <div className="flex flex-col *:m-auto text-xl *:my-3">
+                <span><span className="font-bold">Username:</span> { user.username }</span>
+                <span><span className="font-bold">Email:</span> { user.email }</span>
+                <span><span className="font-bold">Role:</span> { user.scope }</span>
+                <button onClick={handleLogout} className="bg-blue-500 hover:bg-blue-700 active:bg-blue-900 p-4 w-1/4 m-auto rounded text-white">Logout</button>
+            </div>
         </Content>
     )
 }

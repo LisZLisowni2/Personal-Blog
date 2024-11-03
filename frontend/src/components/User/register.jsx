@@ -11,6 +11,10 @@ function RegisterForm() {
 
     const handleRegister = async (event) => {
         event.preventDefault()
+        if (!username || !email || !password) { 
+            alert("Username, email or password not present")
+            return
+        }
         if (password == passwordVerify) {
             const obj = {
                 username: username,
@@ -20,7 +24,7 @@ function RegisterForm() {
             await axios.post("http://127.0.0.1:3000/users/register", obj, {
                 withCredentials: true
             }).then(res => alert("Account created"))
-            .catch(err => console.error(err))
+            .catch(err => alert(err.response.statusText))
         } else {
             alert("Passwords are not the same")
         }
@@ -34,10 +38,10 @@ function RegisterForm() {
                     Username
                 </label>
                 <input id="username" type="text" placeholder="Username" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => { setUsername(e.target.value )}}/>
-                <label className="block font-bold text-xl" for="password">
+                <label className="block font-bold text-xl" for="Email">
                     Email
                 </label>
-                <input id="password" type="text" placeholder="Email" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => { setEmail(e.target.value )}}/>
+                <input id="Email" type="text" placeholder="Email" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => { setEmail(e.target.value )}}/>
                 <label className="block font-bold text-xl" for="password">
                     Password
                 </label>

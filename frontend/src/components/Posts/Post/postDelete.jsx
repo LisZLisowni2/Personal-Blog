@@ -16,7 +16,7 @@ export default function DeletePost() {
             fetchPosts()
             navigate("/")
         }).catch(err => {
-            console.error(err)
+            alert(err.response.statusText)
         })
     }
     return (

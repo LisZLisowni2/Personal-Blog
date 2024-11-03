@@ -12,6 +12,10 @@ function LoginForm() {
 
     const loginHandler = async (event) => {
         event.preventDefault()
+        if (!username || !password) { 
+            alert("Username or password not present")
+            return
+        }
         const obj = {
             username: username,
             password: password
@@ -22,7 +26,7 @@ function LoginForm() {
             handleUserLogin()
             navigate("/")
         })   
-        .catch(err => console.error(err))
+        .catch(err => alert(err.response.statusText))
     }
 
     return (
