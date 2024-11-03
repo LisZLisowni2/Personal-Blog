@@ -49,14 +49,14 @@ function EditPostForm() {
         <Content>
             <form method="POST" onSubmit={handleEditPost} className="flex flex-col border-black border rounded w-3/4 text-center justify-center p-4 m-auto *:mb-4">
                 <span className="text-3xl">Edit post</span>
-                <label className="block font-bold text-xl" for="username">
+                <label className="block font-bold text-xl" for="title">
                     Title
                 </label>
-                <input id="username" type="text" placeholder="Title" value={title} className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setTitle(e.target.value)}/>
-                <label className="block font-bold text-xl" for="username">
+                <input id="title" type="text" placeholder="Title" value={title} className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setTitle(e.target.value)}/>
+                <label className="block font-bold text-xl" for="description">
                     Description
                 </label>
-                <textarea id="username" placeholder="Description" value={description} className="border-sky-400 border-2 p-2 w-3/4 m-auto" onChange={(e) => setDescription(e.target.value)}/>
+                <textarea id="description" placeholder="Description" value={description} className="border-sky-400 border-2 p-2 w-3/4 m-auto" onChange={(e) => setDescription(e.target.value)}/>
                 <button className="bg-blue-500 hover:bg-blue-700 active:bg-blue-900 p-4 w-1/4 m-auto rounded text-white">Edit</button>
             </form>
         </Content>
