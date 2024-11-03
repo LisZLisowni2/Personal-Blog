@@ -19,7 +19,7 @@ function RegisterForm() {
             }
             await axios.post("http://127.0.0.1:3000/users/register", obj, {
                 withCredentials: true
-            }).then(res => console.log(res.data))
+            }).then(res => alert("Account created"))
             .catch(err => console.error(err))
         } else {
             alert("Passwords are not the same")
