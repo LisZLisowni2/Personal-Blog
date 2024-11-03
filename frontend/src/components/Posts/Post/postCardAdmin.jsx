@@ -1,4 +1,6 @@
-function PostCardAdmin() {
+import { Link } from "react-router-dom"
+
+function PostCardAdmin(request) {
     return (
         <Link to={`/${request.id}`}>
         <div className="border-2 border-black p-4 m-4 max-h-52 overflow-hidden">
