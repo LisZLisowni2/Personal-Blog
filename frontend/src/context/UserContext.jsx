@@ -5,6 +5,7 @@ const UserContext = createContext()
 
 export function UserProvide({ children }) {
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     const handleUserLogin = async () => {
         const user = await axios.get("http://127.0.0.1:3000/users/user", {
@@ -15,17 +16,26 @@ export function UserProvide({ children }) {
 
     const handleUserLogout = async () => {
         await axios.get("http://127.0.0.1:3000/users/logout", {
-            withCredentials: false
+            withCredentials: true
         })
         setUser(null)
     }
 
     useEffect(() => {
-        handleUserLogin()
+        const fetchUser = async () => {
+            try {
+                await handleUserLogin()
+            } catch (err) {
+                console.error(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchUser()
     }, [])
 
     return (
-        <UserContext.Provider value={{user, handleUserLogin, handleUserLogout}}>
+        <UserContext.Provider value={{user, handleUserLogin, handleUserLogout, loading}}>
             { children }
         </UserContext.Provider>
     )
