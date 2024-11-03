@@ -5,7 +5,7 @@ It allows user (admin) to create, edit and delete post and anyone can read those
 ## Installation and configuration
 ### a) Frontend (folder /frontend)
 1. Run ```npm install```
-2. You can run the app using 
+2. You can run the app using ```npm run dev```
 ### b) Backend (folder /backend)
 1. Run ```npm install```
 2. Create a cluster at mongodb website
