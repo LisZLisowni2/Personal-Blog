@@ -4,7 +4,7 @@ import axios from 'axios'
 const UserContext = createContext()
 
 export function UserProvide({ children }) {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
 
     const handleUserLogin = async () => {
         const user = await axios.get("http://127.0.0.1:3000/users/user", {
@@ -17,7 +17,7 @@ export function UserProvide({ children }) {
         await axios.get("http://127.0.0.1:3000/users/logout", {
             withCredentials: false
         })
-        setUser({})
+        setUser(null)
     }
 
     useEffect(() => {
