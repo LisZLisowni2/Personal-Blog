@@ -16,7 +16,7 @@ function PostList(request) {
     }
     return (
         <Content>
-            { posts.map(post => <PostCard user={user} fetch={fetchPosts} title={post.title} description={post.description} date={post.date} id={post._id} key={post._id}/>)}
+            { posts.map(post => <PostCard user={user} title={post.title} description={post.description} date={post.date} id={post._id} key={post._id}/>)}
         </Content>
     )
 }
