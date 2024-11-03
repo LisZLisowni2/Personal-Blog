@@ -55,10 +55,10 @@ module.exports = (config) => {
     // Add post
     router.post('/add', authenticateToken, authorizedAccess('admin'), async (req, res) => {
         try {
-            const { title, description, published } = req.body
+            const { title, description, date } = req.body
             const user = await User.findOne({username: req.user.username})
             if (!title || !description) return res.status(400).json({ 'message': 'Title or description not present' })
-            const newPost = new Post({title: title, description: description, published: published, createdBy: user._id})
+            const newPost = new Post({title: title, description: description, date: date, createdBy: user._id})
             await newPost.save()
             res.status(201).json(newPost)
         } catch (err) {

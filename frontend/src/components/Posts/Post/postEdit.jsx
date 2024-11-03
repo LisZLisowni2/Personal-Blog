@@ -62,7 +62,7 @@ function EditPostForm() {
                 <label className="block font-bold text-xl" for="public">
                     Date of publication
                 </label>
-                <input id="public" type="datetime-local" placeholder="Date of publication" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setDate(e.target.value)}/>
+                <input id="public" type="datetime-local" value={new Date(date).toISOString().slice(0, 16)} placeholder="Date of publication" className="text-center border-sky-400 border-2 p-2 w-1/2 m-auto" onChange={(e) => setDate(e.target.value)}/>
                 <label className="block font-bold text-xl" for="description">
                     Description
                 </label>
