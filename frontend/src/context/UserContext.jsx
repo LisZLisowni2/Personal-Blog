@@ -8,14 +8,14 @@ export function UserProvide({ children }) {
     const [loading, setLoading] = useState(true)
 
     const handleUserLogin = async () => {
-        const user = await axios.get("http://127.0.0.1:3000/users/user", {
+        const user = await axios.get("http://1backend/users/user", {
             withCredentials: true
         }) 
         setUser(user.data)
     }
 
     const handleUserLogout = async () => {
-        await axios.get("http://127.0.0.1:3000/users/logout", {
+        await axios.get("http://backend/users/logout", {
             withCredentials: true
         })
         setUser(null)

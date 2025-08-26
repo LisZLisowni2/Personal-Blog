@@ -43,7 +43,7 @@ function EditPostForm() {
             date: date,
             description: description
         }
-        await axios.put(`http://127.0.0.1:3000/posts/edit/${id}`, obj, {
+        await axios.put(`http://backend/posts/edit/${id}`, obj, {
             withCredentials: true
         }).then(() => {
             fetchPosts()

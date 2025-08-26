@@ -22,7 +22,7 @@ function AddPostForm() {
             date: date,
             description: description
         }
-        await axios.post(`http://127.0.0.1:3000/posts/add/`, obj, {
+        await axios.post(`http://backend/posts/add/`, obj, {
             withCredentials: true
         }).then(res => {
             fetchPosts()

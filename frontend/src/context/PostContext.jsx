@@ -9,7 +9,7 @@ export function PostProvide({ children }) {
 
     const fetchPosts = async () => { 
         try {
-            const res = await axios.get("http://127.0.0.1:3000/posts/", {
+            const res = await axios.get("http://backend/posts/", {
                 withCredentials: true
             })
             setPosts(res.data)

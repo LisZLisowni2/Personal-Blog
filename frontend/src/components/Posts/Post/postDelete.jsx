@@ -10,7 +10,7 @@ export default function DeletePost() {
     const navigate = useNavigate()
     const handleDeletePost = async (event) => {
         event.preventDefault()
-        await axios.delete(`http://127.0.0.1:3000/posts/delete/${id}`, {
+        await axios.delete(`http://backend/posts/delete/${id}`, {
             withCredentials: true
         }).then(() => {
             fetchPosts()

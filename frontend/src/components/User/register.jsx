@@ -21,7 +21,7 @@ function RegisterForm() {
                 email: email,
                 password: password
             }
-            await axios.post("http://127.0.0.1:3000/users/register", obj, {
+            await axios.post("http://backend/users/register", obj, {
                 withCredentials: true
             }).then(res => alert("Account created"))
             .catch(err => alert(err.response.statusText))

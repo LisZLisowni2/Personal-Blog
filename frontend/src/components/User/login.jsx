@@ -20,7 +20,7 @@ function LoginForm() {
             username: username,
             password: password
         }
-        await axios.post("http://127.0.0.1:3000/users/login", obj, {
+        await axios.post("http://backend/users/login", obj, {
             withCredentials: true
         }).then(res => {
             handleUserLogin()

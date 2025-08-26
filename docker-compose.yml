@@ -13,6 +13,8 @@ services:
       - singleNet
     ports:
       - "3000:3000"
+    environment:
+      - DATABASE_URI=mongodb://root@database:27017/blog
   database:
     image: mongo:latest
     volumes:
