@@ -1,0 +1,32 @@
+version: '3.0'
+
+services:
+  frontend:
+    build: ./frontend
+    networks:
+      - singleNet
+    ports:
+      - "5173:5173"
+  backend:
+    build: ./backend
+    networks:
+      - singleNet
+    ports:
+      - "3000:3000"
+  database:
+    image: mongo:latest
+    volumes:
+      - db_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - overlayNet
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_DATABASE=blog
+
+networks:
+  singleNet:
+
+volumes:
+  db_data:
