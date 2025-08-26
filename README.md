@@ -3,24 +3,22 @@ Express + React app for personal blog app. <a href="https://roadmap.sh/projects/
 It allows user (admin) to create, edit and delete post and anyone can read those. To enter a admin panel you have to pass JWT authentication.
 
 ## Installation and configuration
-### a) Frontend (folder /frontend)
-1. Run ```npm install```
-2. You can run the app using ```npm run dev```
-### b) Backend (folder /backend)
-1. Run ```npm install```
-2. Create a cluster on mongodb website
-3. Create .env file and insert that variables:
-```bash
-PORT=<your_port (3000)>
-DATABASE_URI=<your_uri_to_mongodb_cluster>
-JWT_SECRET=<your_jwt_secret (you can generate on this website: https://jwtsecret.com/generate)>
+Requirements to run application:
+- Docker
+- Docker compose
+
+1. Clone the project
 ```
-4. Admin user isn't created by default. You have to create it manually. Next steps to set it: \
-4.1. Run server using node app.js\
-4.2. Create user using API endpoint /users/register with request body { username: "your_username", email: "your_email", password: "your_password" }\
-4.3. In the mongodb site, enter the data collections of the cluster (Browse Collections)\
-4.4. Change scope of your user from "user" to "admin"\
-5. After running two server open your browser and navigate to https://localhost:5173
+git clone https://github.com/LisZLisowni2/Personal-Blog.git
+```
+2. Enter the directory
+```
+cd Personal-Blog
+```
+3. Run the application
+```
+[sudo] docker compose up -d
+```
 
 ## Features
 - **Add post** -> Adds a new post with title, description and content
