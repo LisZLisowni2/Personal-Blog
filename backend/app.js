@@ -31,7 +31,8 @@ app.use('/posts', postRouter)
 // Handle a connection about MongoDB and error
 secretRead("password_database")
 .then((res) => {
-    mongoose.connect(`mongodb://root:${res}@database:27017/blog?authSource=admin`)
+    const databaseURI = `mongodb://root:${res}@database:27017/blog?authSource=admin`
+    mongoose.connect(databaseURI)
     .then(() => console.log("Connection established!"))
     .catch(err => console.error(err))
 })

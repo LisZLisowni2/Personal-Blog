@@ -43,4 +43,4 @@ volumes:
 
 secrets:
   password_database:
-    file: ./databasePassword.txt
+    file: ./databasePassword.env

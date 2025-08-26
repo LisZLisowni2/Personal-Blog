@@ -15,7 +15,9 @@ git clone https://github.com/LisZLisowni2/Personal-Blog.git
 ```
 cd Personal-Blog
 ```
-3. Run the application
+3. Create file named 'databasePassword.env' <-- extension HAVE TO be *.env
+4. Input password for Database
+5. Run the application
 ```
 [sudo] docker compose up -d
 ```
